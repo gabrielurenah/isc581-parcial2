@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ManageCategoriesActivity" android:label="Agregar Categoria"/>
-        <activity android:name=".ManageProductsActivity" />
+        <activity android:name=".ManageProductsFragment" />
         <activity android:name=".MainActivity" android:label="SQLite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

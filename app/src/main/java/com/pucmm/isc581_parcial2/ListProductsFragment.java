@@ -24,6 +24,9 @@ public class ListProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (container != null) {
+            container.removeAllViews();
+        }
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list_products, container, false);
 
@@ -46,13 +49,18 @@ public class ListProductsFragment extends Fragment {
             TextView productId = view.findViewById(R.id.product_id);
 
 
-            Intent i = new Intent(getContext(), ManageProductsActivity.class);
-            i.putExtra("id", productId.getText().toString());
-            i.putExtra("name", name.getText().toString());
-            i.putExtra("price", price.getText().toString());
-            i.putExtra("category", category.getText().toString());
+            ManageProductsFragment fragment = new ManageProductsFragment();
 
-            startActivity(i);
+            Bundle bundle = new Bundle();
+            bundle.putString("id", productId.getText().toString());
+            bundle.putString("name", name.getText().toString());
+            bundle.putString("price", price.getText().toString());
+            bundle.putString("category", category.getText().toString());
+
+            fragment.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.list_product_fragment, fragment, "MANAGE_PRODUCTS")
+                    .addToBackStack("MANAGE_PRODUCTS").commit();
         });
 
         return v;

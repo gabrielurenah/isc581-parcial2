@@ -1,6 +1,5 @@
 package com.pucmm.isc581_parcial2;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -59,7 +58,7 @@ public class ListProductsFragment extends Fragment {
 
             fragment.setArguments(bundle);
             getFragmentManager().beginTransaction()
-                    .replace(R.id.list_product_fragment, fragment, "MANAGE_PRODUCTS")
+                    .replace(R.id.main_fragment, fragment, "MANAGE_PRODUCTS")
                     .addToBackStack("MANAGE_PRODUCTS").commit();
         });
 

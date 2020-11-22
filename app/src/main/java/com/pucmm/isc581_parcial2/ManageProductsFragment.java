@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +69,13 @@ public class ManageProductsFragment extends Fragment {
             mBtnRemove.setVisibility(View.VISIBLE);
         }
 
-        mBtnAdd.setOnClickListener(v -> startActivity(new Intent(getContext(),ManageCategoriesActivity.class)));
+        mBtnAdd.setOnClickListener(v -> {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.main_fragment, new ManageCategoriesFragment())
+                    .addToBackStack("MANAGE_CATEGORIES").commit();
+
+//            startActivity(new Intent(getContext(),ManageCategoriesActivity.class));
+        });
 
         mBtnSave.setOnClickListener(v ->  manageProduct(bundle));
         mBtnUpdate.setOnClickListener(v -> manageProduct(bundle));
@@ -83,7 +88,7 @@ public class ManageProductsFragment extends Fragment {
 
                 // go to previous fragment
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.list_product_fragment, new ListProductsFragment(), "LIST_PRODUCTS")
+                        .replace(R.id.main_fragment, new ListProductsFragment(), "LIST_PRODUCTS")
                         .addToBackStack("LIST_PRODUCTS").commit();
             })
             .setNegativeButton(android.R.string.cancel, null)
@@ -108,7 +113,7 @@ public class ManageProductsFragment extends Fragment {
         Toast.makeText(getContext(), "Producto " + ACTION + " con exito", Toast.LENGTH_SHORT).show();
 
         getFragmentManager().beginTransaction()
-                .replace(R.id.list_product_fragment, new ListProductsFragment(), "LIST_PRODUCTS")
+                .replace(R.id.main_fragment, new ListProductsFragment(), "LIST_PRODUCTS")
                 .addToBackStack("LIST_PRODUCTS").commit();
     }
 

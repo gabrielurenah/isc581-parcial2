@@ -2,11 +2,8 @@ package com.pucmm.isc581_parcial2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -29,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add_product) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.list_product_fragment,
+                    .replace(R.id.main_fragment,
                             new ManageProductsFragment(),
                             "MANAGE_PRODUCTS")
                     .addToBackStack("MANAGE_PRODUCTS")
@@ -42,18 +39,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag("LIST_PRODUCTS");
-        Log.d("KLK_COUNT", String.valueOf(count));
         if (count == 0) {
             super.onBackPressed();
         } else {
-//            getSupportFragmentManager().popBackStack();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.list_product_fragment, new ListProductsFragment()).commit();
+                    .replace(R.id.main_fragment, new ListProductsFragment()).commit();
 
-            if (fragment instanceof ListProductsFragment) {
-                Log.d("KLK", "YESSs");
-            }
         }
     }
 }

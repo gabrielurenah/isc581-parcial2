@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageCategoriesActivity" android:label="Agregar Categoria"/>
+        <activity android:name=".ManageCategoriesFragment" android:label="Agregar Categoria"/>
         <activity android:name=".ManageProductsFragment" />
         <activity android:name=".MainActivity" android:label="SQLite">
             <intent-filter>

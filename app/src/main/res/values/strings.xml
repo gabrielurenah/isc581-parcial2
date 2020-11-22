@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">isc581-parcial2</string>
+    <string name="please_register_some_products">Favor de agregar un producto</string>
+    <string name="agregar_producto">Agregar producto</string>
+    <string name="crear">Crear</string>
+    <string name="salvar">Salvar</string>
+    <string name="hint_categoria">Categoria</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_precio">Precio</string>
+    <string name="agregar">Agregar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="remover">Remover</string>
+</resources>

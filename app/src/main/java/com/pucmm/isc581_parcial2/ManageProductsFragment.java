@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManageProductsFragment extends Fragment {
@@ -26,6 +27,7 @@ public class ManageProductsFragment extends Fragment {
     private Button mBtnRemove;
     private Spinner mSpinnerCategory;
     private ArrayAdapter<String> mAdapter;
+    private List<String> allCategories;
 
     private DBManager dbManager;
 
@@ -100,7 +102,14 @@ public class ManageProductsFragment extends Fragment {
     private void manageProduct(Bundle bundle) {
         String name = mEditTextName.getText().toString();
         String price = mEditTextPrice.getText().toString();
-        String category = mSpinnerCategory.getSelectedItem().toString();
+
+        String category = allCategories.size() > 0 ? mSpinnerCategory.getSelectedItem().toString() : "";
+        int count = mSpinnerCategory.getAdapter() != null ? mSpinnerCategory.getAdapter().getCount() : 0;
+
+        if (name.trim().length() <= 0 || price.trim().length() <= 0 || count == 0) {
+            Toast.makeText(getContext(), "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String ACTION = "creado";
         if (bundle != null) {
@@ -120,7 +129,7 @@ public class ManageProductsFragment extends Fragment {
     public void loadSpinnerData() {
         DBManager dbManager = new DBManager(getContext());
 
-        List<String> allCategories = dbManager.getCategories();
+        allCategories = dbManager.getCategories();
 
         mAdapter = new ArrayAdapter<>(
                 getContext(), android.R.layout.simple_spinner_item, allCategories);
